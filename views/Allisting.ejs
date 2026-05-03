@@ -1,0 +1,24 @@
+<% layout("/boilerplate") %>
+<link rel="stylesheet" href="/AllListing.css">
+<h1>All Listings</h1>
+<ul class="wl-grid">
+    <% for(let listing of alllistings){ %>
+        <li class="wl-item">
+            <a class="wl-card" href="/listings/<%= listing._id %>">
+                <div class="wl-card__media">
+                    <img class="wl-card__img" src="<%= listing.image?.url %>" alt="<%= listing.title %>">
+                </div>
+                <div class="wl-card__body">
+                    <h3 class="wl-card__title"><%= listing.title %></h3>
+                    <p class="wl-card__meta">
+                        <% if (listing.location) { %><span><%= listing.location %></span><% } %>
+                        <% if (listing.country) { %><span> • <%= listing.country %></span><% } %>
+                    </p>
+                    <% if (listing.price !== undefined && listing.price !== null) { %>
+                        <p class="wl-card__price">₹<%= listing.price %></p>
+                    <% } %>
+                </div>
+            </a>
+        </li>
+    <% } %>
+</ul>

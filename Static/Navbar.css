@@ -1,0 +1,119 @@
+/* WonderLush Navbar (Bootstrap-based)
+  Works with `views/includes/navbar.ejs`
+*/
+
+:root{
+  --nav-bg: rgba(7,10,18,.72);
+  --nav-border: rgba(255,255,255,.12);
+  --nav-text: rgba(255,255,255,.90);
+  --nav-muted: rgba(255,255,255,.72);
+  --teal:#00B7C2;
+  --gold:#F8C463;
+  --coral:#FF4D6D;
+}
+
+/* Sticky + glass */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background: var(--nav-bg) !important;
+  border-bottom: 1px solid var(--nav-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+}
+
+/* Add a thin gradient accent line */
+.navbar::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+  opacity: .95;
+  pointer-events: none;
+}
+
+.navbar .navbar-brand{
+  font-weight: 950;
+  letter-spacing: .3px;
+  color: rgba(255,255,255,.95) !important;
+  text-transform: capitalize;
+}
+
+.navbar .navbar-brand:hover{
+  color: #ffffff !important;
+}
+
+/* Nav links */
+.navbar .navbar-nav .nav-link{
+  color: var(--nav-muted) !important;
+  font-weight: 850;
+  letter-spacing: .1px;
+  border-radius: 999px;
+  padding: 8px 12px !important;
+  transition: transform .14s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
+}
+
+.navbar .navbar-nav .nav-link:hover{
+  color: rgba(255,255,255,.95) !important;
+  background: rgba(255,255,255,.07);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 55px rgba(0,0,0,.35);
+}
+
+/* Active link */
+.navbar .navbar-nav .nav-link.active{
+  color: #080B12 !important;
+  background: linear-gradient(90deg, rgba(0,183,194,.92), rgba(248,196,99,.92));
+  box-shadow: 0 20px 70px rgba(0,183,194,.18);
+}
+
+/* Disabled */
+.navbar .navbar-nav .nav-link.disabled{
+  color: rgba(255,255,255,.38) !important;
+}
+
+/* Toggler button */
+.navbar .navbar-toggler{
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+}
+
+.navbar .navbar-toggler:focus{
+  box-shadow:
+    0 0 0 .22rem rgba(0,183,194,.18),
+    0 18px 60px rgba(0,0,0,.35);
+}
+
+/* Make the default Bootstrap toggler icon visible on dark glass */
+.navbar .navbar-toggler-icon{
+  filter: invert(1) saturate(0) brightness(1.8);
+  opacity: .92;
+}
+
+/* Dropdown/collapse area */
+.navbar .navbar-collapse{
+  transition: opacity .2s ease;
+}
+
+@media (max-width: 991.98px){
+  .navbar .navbar-nav{
+    gap: 6px;
+    padding: 10px 0 6px;
+  }
+  .navbar .navbar-nav .nav-link{
+    width: fit-content;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .navbar .navbar-nav .nav-link{
+    transition: none !important;
+  }
+}

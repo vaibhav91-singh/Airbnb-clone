@@ -1,0 +1,313 @@
+/* WonderLush All Listings theme
+  Palette: #FFFAF0, #F8C463, #E03F4F, #005461
+  Designed for markup: h1, h2, ul > li (no extra classes needed)
+*/
+
+:root {
+    --bg: #FFFAF0;
+    --gold: #F8C463;
+    --coral: #E03F4F;
+    --teal: #005461;
+
+    --text: #072b31;
+    --muted: rgba(0, 84, 97, 0.72);
+    --card: rgba(255, 255, 255, 0.9);
+    --border: rgba(0, 84, 97, 0.18);
+    --shadow: 0 14px 40px rgba(0, 84, 97, 0.12);
+    --shadowHover: 0 22px 70px rgba(0, 84, 97, 0.18);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+    background:
+        radial-gradient(1100px 700px at 12% 0%, rgba(248, 196, 99, 0.42), transparent 65%),
+        radial-gradient(900px 620px at 95% 18%, rgba(224, 63, 79, 0.26), transparent 58%),
+        radial-gradient(900px 640px at 45% 105%, rgba(0, 84, 97, 0.18), transparent 62%),
+        linear-gradient(180deg, var(--bg), #ffffff 40%, var(--bg));
+}
+
+/* Headings */
+h1 {
+    max-width: 1100px;
+    margin: 28px auto 8px;
+    padding: 0 16px;
+    font-weight: 850;
+    letter-spacing: 0.3px;
+    color: var(--teal);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+h1::after {
+    content: "";
+    display: block;
+    height: 7px;
+    width: min(260px, 72vw);
+    margin-top: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gold), var(--coral));
+    box-shadow: 0 14px 28px rgba(224, 63, 79, 0.16);
+}
+
+h2 {
+    max-width: 1100px;
+    margin: 0 auto 18px;
+    padding: 0 16px;
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--muted);
+}
+
+/* Grid list */
+ul {
+    max-width: 1100px;
+    list-style: none;
+    margin: 0 auto 44px;
+    padding: 0 16px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+/* Listing card (fallback if no classes) */
+li {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px 16px 14px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    font-weight: 750;
+    line-height: 1.25;
+    color: #08363f;
+
+    transform: translateY(0);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+/* Top accent bar */
+li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 7px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    opacity: 0.98;
+    z-index: 0;
+}
+
+/* Soft glow blob */
+li::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 190px;
+    height: 190px;
+    background: radial-gradient(circle at 30% 30%, rgba(248, 196, 99, 0.95), rgba(248, 196, 99, 0) 62%);
+    transform: rotate(18deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 84, 97, 0.28);
+    box-shadow: var(--shadowHover);
+}
+
+/* Clamp long titles */
+li {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 66px;
+}
+
+/* --- Card layout (used by Allisting.ejs) --- */
+.wl-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.wl-item {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
+}
+
+.wl-item::before,
+.wl-item::after {
+    content: none;
+}
+
+.wl-card {
+    display: grid;
+    grid-template-rows: 170px 1fr;
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.wl-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 84, 97, 0.28);
+    box-shadow: var(--shadowHover);
+}
+
+.wl-card__media {
+    position: relative;
+    background:
+        radial-gradient(120px 120px at 20% 15%, rgba(248, 196, 99, 0.85), transparent 60%),
+        radial-gradient(160px 140px at 90% 30%, rgba(224, 63, 79, 0.55), transparent 60%),
+        linear-gradient(135deg, rgba(0, 84, 97, 0.22), rgba(248, 196, 99, 0.18));
+}
+
+.wl-card__media::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 7px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    opacity: 0.98;
+}
+
+.wl-card__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.03);
+    transform: scale(1);
+    transition: transform 0.25s ease;
+}
+
+.wl-card:hover .wl-card__img {
+    transform: scale(1.04);
+}
+
+.wl-card__body {
+    padding: 14px 14px 12px;
+}
+
+.wl-card__title {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    font-weight: 850;
+    letter-spacing: 0.2px;
+    color: var(--teal);
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.wl-card__meta {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-weight: 650;
+    font-size: 0.92rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.wl-card__price {
+    margin: 0;
+    font-weight: 900;
+    color: #08363f;
+}
+
+.wl-card__price::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 999px;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(248, 196, 99, 0.25);
+}
+
+/* Subtle entrance animation */
+@keyframes wl-pop {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+ul>li {
+    animation: wl-pop 0.35s ease both;
+}
+
+ul>li:nth-child(3n + 1) {
+    --card: rgba(255, 255, 255, 0.92);
+}
+
+ul>li:nth-child(3n + 2)::before {
+    background: radial-gradient(circle at 30% 30%, rgba(224, 63, 79, 0.55), rgba(224, 63, 79, 0) 62%);
+}
+
+ul>li:nth-child(3n)::before {
+    background: radial-gradient(circle at 30% 30%, rgba(0, 84, 97, 0.28), rgba(0, 84, 97, 0) 65%);
+}
+
+/* Better spacing on very small screens */
+@media (max-width: 420px) {
+    h1 {
+        margin-top: 18px;
+    }
+
+    ul {
+        gap: 12px;
+    }
+
+    li {
+        border-radius: 16px;
+        padding: 14px 14px 12px;
+    }
+
+    .wl-card {
+        border-radius: 16px;
+        grid-template-rows: 160px 1fr;
+    }
+}

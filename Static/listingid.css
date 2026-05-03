@@ -1,0 +1,180 @@
+/* Listing Details (/listings/:id)
+  Works with Bootstrap markup in `views/listings/show.ejs`
+  Dark + glass + subtle animations
+*/
+
+:root{
+  --bg: #070A12;
+  --bg2:#0B1220;
+  --teal:#00B7C2;
+  --gold:#F8C463;
+  --coral:#FF4D6D;
+  --violet:#7C5CFF;
+
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --card: rgba(255,255,255,.06);
+  --border: rgba(255,255,255,.12);
+  --shadow: 0 28px 120px rgba(0,0,0,.55);
+}
+
+body{
+  background:
+    radial-gradient(900px 560px at 10% 0%, rgba(0,183,194,.22), transparent 60%),
+    radial-gradient(840px 520px at 92% 12%, rgba(255,77,109,.16), transparent 60%),
+    radial-gradient(800px 560px at 50% 105%, rgba(248,196,99,.12), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+  color: var(--text);
+}
+
+/* Page entrance */
+.row.mt-4{
+  animation: wl-in .55s ease both;
+}
+
+@keyframes wl-in{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+/* Title row */
+.row.mt-4 .h3{
+  color: rgba(255,255,255,.95);
+  font-weight: 950;
+  letter-spacing: .2px;
+  text-shadow: 0 14px 36px rgba(0,0,0,.45);
+}
+
+/* Main card */
+.row.mt-4 .card.shadow-sm{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateY(0);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+.row.mt-4 .card.shadow-sm:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0,183,194,.34);
+  box-shadow: 0 34px 140px rgba(0,0,0,.62);
+}
+
+/* Top accent line */
+.row.mt-4 .card.shadow-sm::before{
+  content:"";
+  display:block;
+  height: 7px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral), var(--violet));
+  opacity: .98;
+}
+
+/* Image */
+.row.mt-4 img.card-img-top{
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1);
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.row.mt-4 .card.shadow-sm:hover img.card-img-top{
+  transform: scale(1.03);
+  filter: saturate(1.12) contrast(1.06);
+}
+
+/* Body */
+.row.mt-4 .card-body{
+  background:
+    radial-gradient(420px 220px at 15% 0%, rgba(0,183,194,.10), transparent 65%),
+    radial-gradient(360px 220px at 90% 10%, rgba(255,77,109,.10), transparent 65%),
+    transparent;
+}
+
+.row.mt-4 .card-text{
+  color: rgba(255,255,255,.82);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.row.mt-4 .text-muted{
+  color: rgba(255,255,255,.62) !important;
+}
+
+/* List group overrides */
+.row.mt-4 .list-group-item{
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.82);
+}
+
+.row.mt-4 .list-group-item span:first-child{
+  color: rgba(255,255,255,.70);
+  font-weight: 750;
+}
+
+/* Buttons */
+.row.mt-4 .btn{
+  border-radius: 14px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  transition: transform .14s ease, filter .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
+}
+
+.row.mt-4 .btn:active{
+  transform: translateY(1px);
+}
+
+.row.mt-4 .btn.btn-primary{
+  border: 0;
+  color: #080B12;
+  background: linear-gradient(180deg, rgba(248,196,99,.98), rgba(255,77,109,.92));
+  box-shadow: 0 26px 110px rgba(255,77,109,.20), 0 20px 70px rgba(248,196,99,.12);
+}
+
+.row.mt-4 .btn.btn-primary:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+.row.mt-4 .btn.btn-outline-primary{
+  color: rgba(255,255,255,.92);
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 22px 80px rgba(0,0,0,.45);
+}
+
+.row.mt-4 .btn.btn-outline-primary:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,183,194,.45);
+  background: rgba(0,183,194,.10);
+}
+
+.row.mt-4 .btn.btn-outline-secondary{
+  color: rgba(255,255,255,.86);
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.05);
+}
+
+.row.mt-4 .btn.btn-outline-secondary:hover{
+  border-color: rgba(248,196,99,.55);
+  background: rgba(248,196,99,.12);
+}
+
+/* Responsive */
+@media (max-width: 576px){
+  .row.mt-4 img.card-img-top{ height: 260px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .row.mt-4{ animation: none !important; }
+  .row.mt-4 .card.shadow-sm,
+  .row.mt-4 img.card-img-top,
+  .row.mt-4 .btn{ transition: none !important; }
+}

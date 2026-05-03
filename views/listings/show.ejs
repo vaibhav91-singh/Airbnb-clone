@@ -1,0 +1,59 @@
+<% layout("/boilerplate") %>
+<link rel="stylesheet" href="/listingid.css">
+
+<div class="row mt-4">
+    <div class="col-10 col-md-8 col-lg-6 mx-auto">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="h3 mb-0"><%= listing?.title || "Listing" %></h1>
+            <a href="/listings" class="btn btn-outline-secondary btn-sm">Back</a>
+        </div>
+        
+        <div class="card shadow-sm">
+            <% if (listing?.image?.url) { %>
+                <img
+                    src="<%= listing.image.url %>"
+                    class="card-img-top"
+                    alt="<%= listing?.title || 'Listing image' %>"
+                    style="object-fit: cover; max-height: 360px;"
+                >
+            <% } %>
+
+            <div class="card-body">
+                <% if (listing?.description) { %>
+                    <p class="card-text"><%= listing.description %></p>
+                <% } else { %>
+                    <p class="text-muted mb-3">No description provided.</p>
+                <% } %>
+
+                <ul class="list-group list-group-flush mb-3">
+                    <% if (listing?.price !== undefined && listing?.price !== null) { %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Price</span>
+                            <span class="fw-semibold">₹<%= listing.price %></span>
+                        </li>
+                    <% } %>
+                    <% if (listing?.location) { %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Location</span>
+                            <span class="fw-semibold"><%= listing.location %></span>
+                        </li>
+                    <% } %>
+                    <% if (listing?.country) { %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Country</span>
+                            <span class="fw-semibold"><%= listing.country %></span>
+                        </li>
+                    <% } %>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <a href="/listings" class="btn btn-primary">All Listings</a>
+                    
+                    <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary">Edit Listing</a>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
